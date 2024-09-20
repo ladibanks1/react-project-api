@@ -7,7 +7,8 @@ import notFound from "./router/notFound.router.js";
 import cors from "cors";
 import path from "path";
 import { fileURLToPath } from "url";
-import job from "./router/jobDetails.router.js"
+import job from "./router/jobDetails.router.js";
+import verifyAccess from "./middleware/verifyAccess.middleware.js";
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -20,6 +21,11 @@ app.use(express.json());
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const assets = path.join(__dirname, "public" , "assets");
+
+// Verify Access
+app.use(verifyAccess)
+
+// Static Files
 app.use(express.static(assets));
 
 // Job Details Routes
