@@ -21,12 +21,13 @@ app.use(express.json());
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const assets = path.join(__dirname, "public" , "assets");
+// Static Files
+app.use(express.static(assets));
+
 
 // Verify Access
 app.use(verifyAccess)
 
-// Static Files
-app.use(express.static(assets));
 
 // Job Details Routes
 app.use("/job", job);
